@@ -1,0 +1,44 @@
+{
+  "heroes": [
+    {
+      "id": "58ac110d-3ebd-4f63-b79c-80e49b876133",
+      "name": "Кирилл",
+      "description": "Super",
+      "element": "fire"
+    },
+    {
+      "id": "56020659-eb1b-4ce4-93a6-e35db3d6d20d",
+      "name": "Masha",
+      "description": "Love",
+      "element": "water"
+    },
+    {
+      "id": "175b40da-cce5-44a7-9ec5-e960ac19a22f",
+      "name": "Andrey",
+      "description": "Smart",
+      "element": "wind"
+    }
+  ],
+  "filters": [
+    {
+      "id": "all",
+      "name": "all"
+    },
+    {
+      "id": "fire",
+      "name": "fire"
+    },
+    {
+      "id": "water",
+      "name": "water"
+    },
+    {
+      "id": "wind",
+      "name": "wind"
+    },
+    {
+      "id": "earth",
+      "name": "earth"
+    }
+  ]
+}
