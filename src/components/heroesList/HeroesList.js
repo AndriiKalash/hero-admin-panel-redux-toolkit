@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
@@ -7,6 +7,7 @@ import { heroesDelete, fetchHeroes, filterHeroesSelector } from "./heroesSlice";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 import './heroesList.scss';;
+
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
 // Усложненная задача:
@@ -30,11 +31,11 @@ const HeroesList = () => {
             console.warn(err);
             alert('coud not fetch');
           }); 
-    } , [request] );
+    } , [] );
 
-    if (heroesLoadingStatus === "loading") {
+    if (heroesLoadingStatus==='loading') {
         return <Spinner/>;
-    } else if (heroesLoadingStatus === "error") {
+    } else if (heroesLoadingStatus==='error') {
         return <h5 className="text-center mt-5">Ошибка загрузки</h5>
     }
 
@@ -49,7 +50,7 @@ const HeroesList = () => {
             )
         } 
 
-        return filteredHeroes.map(({ id, ...props}) =>  (       
+        return arr.map(({ id, ...props}) =>  (       
                          <CSSTransition  
                                  key={id}
                                  timeout={500} 
@@ -59,9 +60,8 @@ const HeroesList = () => {
                                  {...props}
                                   onClickDelite={() =>onClickDelite(id)}/>
                         </CSSTransition>                
-                  )
-     )
-         
+                    )
+                )   
     }
 
     const elements = renderHeroesList(filteredHeroes);

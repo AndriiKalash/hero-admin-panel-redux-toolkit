@@ -50,6 +50,7 @@ const HeroesAddForm = () => {
          setNameVal('');
          setDescriptionVal('');
          setElementVal('');
+        
     }
         
     return (

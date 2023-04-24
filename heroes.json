@@ -1,22 +1,28 @@
 {
   "heroes": [
     {
-      "id": "58ac110d-3ebd-4f63-b79c-80e49b876133",
-      "name": "Кирилл",
-      "description": "Super",
+      "id": "b9370b82-5d66-4d78-a4f8-8ec97b4a2737",
+      "name": "Superman",
+      "description": "strong",
+      "element": "earth"
+    },
+    {
+      "id": "a4007de1-e3e8-4d62-8177-313ac3e0c9ad",
+      "name": "Fierman",
+      "description": "fier",
       "element": "fire"
     },
     {
-      "id": "56020659-eb1b-4ce4-93a6-e35db3d6d20d",
-      "name": "Masha",
-      "description": "Love",
-      "element": "water"
+      "id": "fb39c771-b743-4574-8d87-10b41edd1f92",
+      "name": "Batman",
+      "description": "fligh",
+      "element": "wind"
     },
     {
-      "id": "175b40da-cce5-44a7-9ec5-e960ac19a22f",
-      "name": "Andrey",
-      "description": "Smart",
-      "element": "wind"
+      "id": "82d07650-92b1-456e-a51e-3b4397ab0ab9",
+      "name": "Aquaman",
+      "description": "water power",
+      "element": "water"
     }
   ],
   "filters": [
