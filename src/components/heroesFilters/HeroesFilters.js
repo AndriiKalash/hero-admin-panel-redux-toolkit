@@ -2,19 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import store from "../../store";
 
-import { fetchFilters, filterSelect, selectAll} from './filtersSlice';
+import { fetchFilters, filterSelect, filterSelector, selectAll} from './filtersSlice';
 import Spinner from "../spinner/Spinner";
 
 // Задача для этого компонента:
 // Фильтры должны формироваться на основании загруженных данных
 // Фильтры должны отображать только нужных героев при выборе
 // Активный фильтр имеет класс active
-// Изменять json-файл для удобства МОЖНО!
-// Представьте, что вы попросили бэкенд-разработчика об этом
+
 
 const HeroesFilters = () => {
 
-    const { filtersLoadingStatus, selectionfilter} = useSelector(state => state.filter);
+    const { filtersLoadingStatus, selectionfilter} = useSelector(filterSelector);
     const filters = selectAll(store.getState());
     const dispatch = useDispatch();
     

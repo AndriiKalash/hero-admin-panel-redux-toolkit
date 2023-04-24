@@ -1,43 +1,50 @@
-import { useCallback, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useMemo} from 'react';
+import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
-import {useHttp} from '../../hooks/http.hook';
-import { heroesDelete, fetchHeroes, filterHeroesSelector } from "./heroesSlice";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
-import './heroesList.scss';;
+import { useDeleteHeroMutation, useGetHeroesQuery } from '../../api/apiSlice';
+import { filterSelector} from '../heroesFilters/filtersSlice';
+import './heroesList.scss';
+
 
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
-// Усложненная задача:
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
 
-    const {heroesLoadingStatus} = useSelector(state => state.heroes);
-    const filteredHeroes = useSelector(filterHeroesSelector);
-    const dispatch = useDispatch();
-    const {request} = useHttp();
-   
-    useEffect(() => {
-        dispatch(fetchHeroes());
-    }, []);
+    const {selectionFilter} = useSelector(filterSelector);
+
+    const { 
+         data: heroes = [],
+         isLoading,
+          isError
+         } =useGetHeroesQuery();
+
+    const [ deleteHero ] = useDeleteHeroMutation();
+
+
+    const filteredHeroes = useMemo(()=>{
+        const filteredHeroes = heroes.slice();
+        if (selectionFilter === 'all') {
+            return filteredHeroes;
+        } else {
+             return filteredHeroes.filter(item => item.element === selectionFilter);
+        }
+    },[heroes, selectionFilter]);
 
     const onClickDelite = useCallback ( id => {
-        request(`http://localhost:3001/heroes/${id}`,"DELETE")
-        .then(dispatch(heroesDelete(id)))
-        .catch((err) => {
-            console.warn(err);
-            alert('coud not fetch');
-          }); 
+        deleteHero(id);
     } , [] );
 
-    if (heroesLoadingStatus==='loading') {
+
+    if (isLoading) {
         return <Spinner/>;
-    } else if (heroesLoadingStatus==='error') {
+    } else if (isError) {
         return <h5 className="text-center mt-5">Ошибка загрузки</h5>
-    }
+    };
 
     const renderHeroesList = (arr) => {
         if (arr.length === 0) {
@@ -49,7 +56,6 @@ const HeroesList = () => {
                 </CSSTransition>
             )
         } 
-
         return arr.map(({ id, ...props}) =>  (       
                          <CSSTransition  
                                  key={id}
@@ -60,9 +66,9 @@ const HeroesList = () => {
                                  {...props}
                                   onClickDelite={() =>onClickDelite(id)}/>
                         </CSSTransition>                
-                    )
-                )   
-    }
+            )
+        )   
+    };
 
     const elements = renderHeroesList(filteredHeroes);
 

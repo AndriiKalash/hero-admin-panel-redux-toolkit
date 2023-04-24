@@ -42,11 +42,7 @@ const filtersSlice = createSlice({
 });
 
 export const {selectAll} = filterAdapter.getSelectors(state => state.filter);
+export const filterSelector = state => state.filter;
 const {reducer, actions} = filtersSlice;
 export default reducer;
-export const {
-    filtersFetching,
-    filtersFetched,
-    filtersFetchingError,
-    filterSelect
-} = actions;
+export const { filterSelect } = actions;
