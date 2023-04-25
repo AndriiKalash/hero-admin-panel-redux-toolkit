@@ -23,6 +23,18 @@
       "name": "Aquaman",
       "description": "water power",
       "element": "water"
+    },
+    {
+      "name": "Andrey",
+      "description": "xxxx",
+      "element": "fire",
+      "id": "16e351fc-9693-43e1-b7c6-5d905bc71635"
+    },
+    {
+      "name": "Кирилл",
+      "description": "aaa",
+      "element": "wind",
+      "id": "c5a51592-ebe1-4977-aded-f7fb15141ffd"
     }
   ],
   "filters": [
