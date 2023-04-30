@@ -17,6 +17,19 @@ const HeroesListItem = ({
 
 const [showTask, setShowTask] = useState(false);
 
+let taskInfo;
+switch (task.length) {
+  case 0:
+    taskInfo = 'no mission'
+    break;
+  case 1:
+    taskInfo = '1 mission'
+    break;
+  default:
+    taskInfo = `${task.length} missions `
+    break;
+};
+
 let elementClassName;
     switch (element) {
         case 'fire':
@@ -47,13 +60,16 @@ let elementClassName;
               <div className="card-body">
                 <h3 className="card-title">{name}</h3>
                 <p className="card-text">{description}</p>
-                <FontAwesomeIcon
-                  icon={faBoltLightning} 
-                  rotation={ showTask? 270 : 0} 
-                  onClick={()=>setShowTask(!showTask)} 
-                  style={{color:`${ showTask ? 'red' : 'green'}`,
-                   fontSize:"40px", transition: 'all 500ms ease-in', cursor:'pointer'}} 
-                />
+                <div className='d-flex gap-3'>
+                  <FontAwesomeIcon
+                     icon={faBoltLightning} 
+                     rotation={ showTask? 270 : 0} 
+                     onClick={()=>setShowTask(!showTask)} 
+                     style={{color:`${ showTask ? 'red' : 'green'}`,
+                     fontSize:"40px", transition: 'all 500ms ease-in', cursor:'pointer'}} 
+                  />
+                  <p>{taskInfo}</p>
+                </div>  
               </div>
               <span 
                 onClick={onClickDelite} 
@@ -86,14 +102,14 @@ let elementClassName;
                       </li>))
                     ) : (
                       <h5 className="mt-5">
-                        This superhero dose not have task yet
+                        This superhero dose not have mission yet
                       </h5>
                     )
                 }
               </ol>  
             }       
           </li>  
-    )}
+    )};
 
 
 

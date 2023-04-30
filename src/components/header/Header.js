@@ -1,5 +1,4 @@
 import {Row, Col} from 'react-bootstrap';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Formik, Form, Field, ErrorMessage, } from 'formik';
 import * as Yup from 'yup';
@@ -14,7 +13,7 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
     date: Yup.string()
     .required('Required'),
-    hero: Yup.string().required('Chouse hero')
+    hero: Yup.string().required('Choose a hero')
 });
 
 const Header = () => {
@@ -62,20 +61,24 @@ const Header = () => {
                 <Form>
                   <Row>
                     <Col sm={8}>
-                        <label className="form-label fs-4 text-dark" htmlFor="task">new task :</label>
+                        <label className="form-label fs-4 text-dark" htmlFor="task">
+                            new mission :
+                        </label>
                         <Field
                             type="text"
                             className="form-control"
                             id="task" 
                             name='task'
-                            placeholder="Enter new task"/>
+                            placeholder="Enter new mission"/>
                         <ErrorMessage 
                             name="task"
                             component="div" 
                             className='error'/>
                     </Col>
                     <Col className='mb-4' sm={4}>
-                           <label className="form-label fs-4 text-dark" htmlFor="date">complete to ...</label>
+                           <label className="form-label fs-4 text-dark" htmlFor="date">
+                            complete to ...
+                        </label>
                         <Field
                             type='date' 
                             className="form-control form-calendar" 
@@ -94,7 +97,7 @@ const Header = () => {
                             id="hero" 
                             name="hero"
                             as="select">
-                           <option value="">Choose one herro</option>
+                           <option value="">Choose one hero</option>
                           {
                            (isLoading) ? 
                            ( <option>loading...</option>
@@ -114,15 +117,15 @@ const Header = () => {
                             className='error'/>
                     </Col>
                     <Col>
-                       <button type="submit" 
+                        <button type="submit" 
                                disabled={isSubmitting}  
                                className="btn btn-outline-secondary ">
-                                Add Task
+                                Add Mission
                         </button>
                         <button type="button"
                                 onClick={resetForm}
-                                className="btn btn-outline-secondary ms-4 ">
-                                 Clear Task
+                                className="btn btn-outline-secondary ms-2 ">
+                                 Clear Mission
                         </button>
                     </Col>
                   </Row>

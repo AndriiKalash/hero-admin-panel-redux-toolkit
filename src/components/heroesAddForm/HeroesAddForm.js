@@ -17,7 +17,7 @@ const SignupSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-    element: Yup.string().required('Chouse the element')
+    element: Yup.string().required('Choose the power')
 });
 
 // Задача для этого компонента:

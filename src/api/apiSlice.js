@@ -32,8 +32,7 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ['Heroes']
         })
-    })
-    
+    }) 
 });
 
 export const {

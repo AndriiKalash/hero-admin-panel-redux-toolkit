@@ -20,9 +20,8 @@ const App = () => {
                     </div>
                 </div>
             </div>
-               
         </main>
     )
-}
+};
 
 export default App;

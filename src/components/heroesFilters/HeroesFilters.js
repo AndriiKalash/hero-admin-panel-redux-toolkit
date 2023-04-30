@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import store from "../../store";
 
+import store from "../../store";
 import { fetchFilters, filterSelect, filterSelector, selectAll} from './filtersSlice';
 import Spinner from "../spinner/Spinner";
 
@@ -72,6 +72,6 @@ const HeroesFilters = () => {
             </div>
         </div>
     )
-}
+};
 
 export default HeroesFilters;

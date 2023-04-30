@@ -24,7 +24,7 @@ const HeroesList = () => {
          } =useGetHeroesQuery();
 
     const [ deleteHero ] = useDeleteHeroMutation();
-    const [addTask, { isLoading: isAddingTask }] = useAddTaskMutation();
+    const [addTask] = useAddTaskMutation();
 
 
     const filteredHeroes = useMemo(()=>{
@@ -38,13 +38,13 @@ const HeroesList = () => {
 
     const onClickDelite = useCallback ( id => {
         deleteHero(id);
-    } , [] );
+    } , [deleteHero] );
 
     const onClickDeleteTask = (idTask, idHero) => {
         const findedHero = heroes.find(hero => hero.id === idHero);
         const updateTasks = findedHero.task.filter(oneTask => oneTask.id !== idTask);
         addTask({heroId: idHero, task:updateTasks});
-      } ;
+      };
 
 
     if (isLoading) {
@@ -59,21 +59,21 @@ const HeroesList = () => {
                 <CSSTransition
                 timeout={0}
                 classNames="hero">
-                     <h5 className="text-center mt-5">Героев пока нет</h5>
+                    <h5 className="text-center mt-5">Героев пока нет</h5>
                 </CSSTransition>
             )
         } 
         return arr.map(({ id, ...props}) =>  (       
                          <CSSTransition  
-                                 key={id}
-                                 timeout={500} 
-                                 classNames="hero"
+                                key={id}
+                                timeout={500} 
+                                classNames="hero"
                          >
                          <HeroesListItem  
-                                 {...props}
-                                 id={id}
-                                  onClickDelite={() =>onClickDelite(id)}
-                                  deleteTask={onClickDeleteTask}/>
+                                {...props}
+                                id={id}
+                                onClickDelite={() =>onClickDelite(id)}
+                                deleteTask={onClickDeleteTask}/>
                         </CSSTransition>                
             )
         )   
@@ -86,6 +86,6 @@ const HeroesList = () => {
             {elements}
         </TransitionGroup>
     )
-}
+};
 
 export default HeroesList;
