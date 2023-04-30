@@ -1,0 +1,21 @@
+.card-block{
+    position: relative;
+    &__task{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index:1;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 500ms ease-in; 
+        height: 155px;
+    }
+    &__task-active{
+        opacity:0.8;
+        visibility: visible;
+        transform: translateX(50%);
+        overflow-y: scroll;
+    }
+
+}

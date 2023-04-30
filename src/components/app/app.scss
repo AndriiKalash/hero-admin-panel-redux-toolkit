@@ -5,12 +5,28 @@
 }
 
 .content {
-    display: grid;
-    grid-template-columns: 560px 440px;
     max-width: 1040px;
     margin: 0 auto;
     padding-top: 50px;
+    &__header{
+        max-width: 1000px;
+        
+    }
+    &__main{
+        display: grid;
+        grid-template-columns: 560px 440px;
+        padding-top: 20px;
+    }
+    
     &__interactive {
         padding-left: 40px;
     }
+}
+.form-calendar{
+    text-align: center;
+    letter-spacing: 2.5px;
+    color: #999191 !important;
+}
+.error{
+    color: rgb(219, 2, 2);
 }

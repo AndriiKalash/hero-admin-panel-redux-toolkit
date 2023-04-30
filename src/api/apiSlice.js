@@ -23,6 +23,14 @@ export const apiSlice = createApi({
                 method: 'DELETE'
             }),
             invalidatesTags: ['Heroes']
+        }),
+        addTask: builder.mutation({
+            query: ({ heroId, task }) => ({
+                url: `/heroes/${heroId}`,
+                method: 'PATCH',
+                body: {task},
+            }),
+            invalidatesTags: ['Heroes']
         })
     })
     
@@ -31,6 +39,9 @@ export const apiSlice = createApi({
 export const {
     useGetHeroesQuery,
     useCreateHeroMutation,
-    useDeleteHeroMutation
+    useDeleteHeroMutation,
+    useAddTaskMutation,
 } = apiSlice;
+
+
 

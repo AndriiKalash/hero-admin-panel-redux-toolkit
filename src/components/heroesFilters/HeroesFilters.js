@@ -41,19 +41,19 @@ const HeroesFilters = () => {
                         let classBtn = "btn ";
                         switch (element.name) {
                         case 'all':
-                            classBtn += "btn-outline-dark";
+                            classBtn += "btn-outline-secondary";
                             break;
                         case 'fire':
-                            classBtn += "btn-danger";
+                            classBtn += "btn-warning";
                             break;
                         case 'water':
                             classBtn += "btn-primary";
                             break;
                         case 'wind':
-                            classBtn += "btn-success";
+                            classBtn += "btn-dark";
                             break;
                         case 'earth':
-                            classBtn += "btn-secondary";
+                            classBtn += "btn-danger";
                             break;     
                         default:
                             break;

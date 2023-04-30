@@ -35,6 +35,19 @@ const HeroesAddForm = () => {
     const filters = selectAll(store.getState());
     const {filtersLoadingStatus} = useSelector(filterSelector);
     const [ addHerro ] = useCreateHeroMutation();
+
+    const onSubmit = (values) => {
+        const choosenElement = filters.find(obj => obj.name === values.element);
+        const newHero = {
+            picture: choosenElement.picture,
+            id :uuidv4(),
+            name:values.name,
+            description:values.description,
+            element:values.element,
+            task:[]
+        };
+        addHerro(newHero);
+    }
   
    
     return (
@@ -47,8 +60,7 @@ const HeroesAddForm = () => {
             }}
         validationSchema={SignupSchema}
         onSubmit={(values, {setSubmitting, resetForm }) => {
-            values.id = uuidv4();
-            addHerro(values);
+            onSubmit(values)
             setSubmitting(false);
             resetForm();
         }}>
@@ -93,7 +105,7 @@ const HeroesAddForm = () => {
                          <option value="" >Я владею элементом...</option>
                        { 
                        (filtersLoadingStatus==="loading") ?
-                          ( <div>loading...</div>
+                          ( <option>loading...</option>
                           ):(
                             filters.filter((elem)=>{
                              return elem.name !== "all";

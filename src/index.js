@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import App from './components/app/App';
 import store from './store';
 
+import '@fortawesome/fontawesome-free/css/all.css';
 import './styles/index.scss';
 
 ReactDOM.render(

@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
-import { useDeleteHeroMutation, useGetHeroesQuery } from '../../api/apiSlice';
+import { useAddTaskMutation, useDeleteHeroMutation, useGetHeroesQuery } from '../../api/apiSlice';
 import { filterSelector} from '../heroesFilters/filtersSlice';
 import './heroesList.scss';
 
@@ -24,6 +24,7 @@ const HeroesList = () => {
          } =useGetHeroesQuery();
 
     const [ deleteHero ] = useDeleteHeroMutation();
+    const [addTask, { isLoading: isAddingTask }] = useAddTaskMutation();
 
 
     const filteredHeroes = useMemo(()=>{
@@ -38,6 +39,12 @@ const HeroesList = () => {
     const onClickDelite = useCallback ( id => {
         deleteHero(id);
     } , [] );
+
+    const onClickDeleteTask = (idTask, idHero) => {
+        const findedHero = heroes.find(hero => hero.id === idHero);
+        const updateTasks = findedHero.task.filter(oneTask => oneTask.id !== idTask);
+        addTask({heroId: idHero, task:updateTasks});
+      } ;
 
 
     if (isLoading) {
@@ -64,7 +71,9 @@ const HeroesList = () => {
                          >
                          <HeroesListItem  
                                  {...props}
-                                  onClickDelite={() =>onClickDelite(id)}/>
+                                 id={id}
+                                  onClickDelite={() =>onClickDelite(id)}
+                                  deleteTask={onClickDeleteTask}/>
                         </CSSTransition>                
             )
         )   
