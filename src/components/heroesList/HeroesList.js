@@ -1,4 +1,4 @@
-import { useCallback, useMemo} from 'react';
+import { useCallback, useMemo, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
@@ -13,15 +13,15 @@ import './heroesList.scss';
 // При клике на "крестик" идет удаление персонажа из общего состояния
 // Удаление идет и с json файла при помощи метода DELETE
 
-const HeroesList = () => {
-
+const HeroesList = ({page}) => {
+     
+    // const [page, setPage] = useState(1);
     const {selectionFilter} = useSelector(filterSelector);
-
     const { 
          data: heroes = [],
          isLoading,
           isError
-         } =useGetHeroesQuery();
+         } =useGetHeroesQuery(page);
 
     const [ deleteHero ] = useDeleteHeroMutation();
     const [addTask] = useAddTaskMutation();
@@ -38,13 +38,13 @@ const HeroesList = () => {
 
     const onClickDelite = useCallback ( id => {
         deleteHero(id);
-    } , [deleteHero] );
+    } , [] );
 
-    const onClickDeleteTask = (idTask, idHero) => {
+    const onClickDeleteTask = useCallback((idTask, idHero) => {
         const findedHero = heroes.find(hero => hero.id === idHero);
         const updateTasks = findedHero.task.filter(oneTask => oneTask.id !== idTask);
         addTask({heroId: idHero, task:updateTasks});
-      };
+      },[heroes]);
 
 
     if (isLoading) {
@@ -81,10 +81,26 @@ const HeroesList = () => {
 
     const elements = renderHeroesList(filteredHeroes);
 
-    return (    
-        <TransitionGroup component = 'ul'>
+    return (  
+        <>
+         <TransitionGroup component = 'ul'>
             {elements}
+            {/* <ul className='pagination'>
+                    {
+                        [...Array(3)].map((_,i) => (
+                            <li 
+                            key={i}
+                            className={page===(i+1) ? "active": ''}
+                            onClick={()=>setPage(i+1)}>
+                                {i+1}
+                            </li>
+                        ))
+                    }
+            </ul> */}
         </TransitionGroup>
+       
+        </>  
+       
     )
 };
 

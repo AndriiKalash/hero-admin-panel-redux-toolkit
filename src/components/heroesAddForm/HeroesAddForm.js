@@ -67,17 +67,20 @@ const HeroesAddForm = () => {
             {({isSubmitting}) => (
                 <Form className="border p-4 shadow-lg rounded">
                 <div className="mb-3">
-                    <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
+                    <label htmlFor="name" className="form-label fs-4">
+                        Name of new hero
+                    </label>
                     <ErrorMessage name="name" component="div" className='error'/>
                     <Field 
                         id="name"
                         name="name"
-                        placeholder="Как меня зовут?"/>
+                        placeholder="what is my name?"/>
                 </div>
                 <div className="mb-3">
                     <label 
                         htmlFor="description"
-                        className="form-label fs-4">Описание
+                        className="form-label fs-4">
+                            my skills
                     </label>
                     <ErrorMessage 
                         name="description"
@@ -88,11 +91,13 @@ const HeroesAddForm = () => {
                         name="description" 
                         as="textarea"
                         className="form-control" 
-                        placeholder="Что я умею?"
+                        placeholder="what can i do?"
                         style={{"height": '130px'}}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
+                    <label htmlFor="element" className="form-label">
+                        choose element of strength
+                    </label>
                     <ErrorMessage 
                         name="element"
                         component="div" 
@@ -102,7 +107,7 @@ const HeroesAddForm = () => {
                         id="element" 
                         name="element"
                         as="select">
-                         <option value="" >Я владею элементом...</option>
+                         <option value="" >my strength is...</option>
                        { 
                        (filtersLoadingStatus==="loading") ?
                           ( <option>loading...</option>
@@ -125,7 +130,7 @@ const HeroesAddForm = () => {
                    type="submit" 
                    disabled={isSubmitting} 
                    className="btn btn-primary">
-                    Создать
+                    Create
                 </button>
                 </Form>
             )} 

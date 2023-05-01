@@ -6,7 +6,7 @@ export const apiSlice = createApi({
     tagTypes: ['Heroes'],
     endpoints: builder => ({
         getHeroes: builder.query({
-            query: () => '/heroes',
+            query: (page) => `/heroes?_page=${page}&_limit=3`,
             providesTags: ['Heroes']
         }),
         createHero: builder.mutation({

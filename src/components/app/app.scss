@@ -5,6 +5,7 @@
 }
 
 .content {
+    position: relative;
     max-width: 1040px;
     margin: 0 auto;
     padding-top: 50px;
@@ -12,14 +13,42 @@
         max-width: 1000px;
         
     }
+    &__spinner{
+        color: #232827;
+    }
     &__main{
         display: grid;
         grid-template-columns: 560px 440px;
         padding-top: 20px;
+        margin-bottom: 40px;
     }
     
     &__interactive {
         padding-left: 40px;
+    }
+    &__paginate{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translate(50%, 80%);
+        width: 30%;
+        margin: 0 auto 50px;
+        border-radius: 50%;
+        li {
+            display: inline-block;
+            padding: 10px 17px;
+            background-color: rgb(153, 153, 153);
+            font-size: 18px;
+            border-radius: 50px;
+            margin-right: 15px;
+            border: 1px solid rgba(22, 170, 215, 0.1);
+            cursor: pointer;
+        
+            &.active {
+              background-color: rgb(22, 132, 10);
+              color: #fff;
+            }
+        }    
     }
 }
 .form-calendar{

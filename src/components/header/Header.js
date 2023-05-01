@@ -3,7 +3,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Formik, Form, Field, ErrorMessage, } from 'formik';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from "uuid";
-import {useAddTaskMutation, useGetHeroesQuery} from "../../api/apiSlice"
+import {useAddTaskMutation, useGetHeroesQuery} from "../../api/apiSlice";
+
+import Spinner from '../spinner/Spinner';
 
 
 const SignupSchema = Yup.object().shape({
@@ -16,12 +18,13 @@ const SignupSchema = Yup.object().shape({
     hero: Yup.string().required('Choose a hero')
 });
 
-const Header = () => {
+const Header = ({page}) => {
 
     const { 
         data: heroes = [],
+        isFetching,
         isLoading
-        } =useGetHeroesQuery();
+        } =useGetHeroesQuery(page);
 
     const [addTask] = useAddTaskMutation(); 
     
@@ -127,6 +130,11 @@ const Header = () => {
                                 className="btn btn-outline-secondary ms-2 ">
                                  Clear Mission
                         </button>
+                    </Col>
+                    <Col>
+                        <div className='content__spinner text-center'>
+                            {isFetching ? <Spinner/> : null}
+                        </div>
                     </Col>
                   </Row>
                 </Form>
